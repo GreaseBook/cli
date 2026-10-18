@@ -11,7 +11,7 @@ permissions you have on the GreaseBook site. Build your own reports and dashboar
 - **Your permissions, nothing more.** Execs see their whole company, pumpers see the facilities assigned to them.
 - **Made for scripts and AI.** Every command prints a table, JSON or CSV.
 
-Latest version: **0.1.3** · [All releases](https://github.com/GreaseBook/cli/releases)
+Latest version: **0.1.4** · [cli.greasebook.com](https://cli.greasebook.com) · [All releases](https://github.com/GreaseBook/cli/releases)
 
 ## Contents
 
@@ -44,7 +44,7 @@ Installed `gb` 0.1.0 as a formula? Switch with `brew uninstall gb && brew update
 
 ### Windows
 
-1. Download **`gb_0.1.3_windows_amd64.msi`** from the [latest release](https://github.com/GreaseBook/cli/releases/latest).
+1. Download **`gb_0.1.4_windows_amd64.msi`** from the [latest release](https://github.com/GreaseBook/cli/releases/latest).
 2. Double-click it. If Windows SmartScreen says it protected your PC, choose **More info**, then **Run anyway**.
 3. Follow the installer. It installs to `C:\Program Files\GreaseBook CLI` and adds that folder to your `PATH`.
 4. Open a **new** PowerShell, Windows Terminal or Command Prompt window (windows that were already open do not see the
@@ -54,7 +54,7 @@ Installed `gb` 0.1.0 as a formula? Switch with `brew uninstall gb && brew update
 gb --version
 ```
 
-**Windows on ARM:** download `gb_0.1.3_windows_arm64.zip`, extract `gb.exe` to a folder such as
+**Windows on ARM:** download `gb_0.1.4_windows_arm64.zip`, extract `gb.exe` to a folder such as
 `%LOCALAPPDATA%\Programs\gb`, and add that folder to your user `PATH` (**Settings > System > About > Advanced system
 settings > Environment Variables**).
 
@@ -62,8 +62,8 @@ settings > Environment Variables**).
 
 ```bash
 # x86_64; use linux_arm64 on ARM
-curl -fsSLO https://github.com/GreaseBook/cli/releases/latest/download/gb_0.1.3_linux_amd64.tar.gz
-tar -xzf gb_0.1.3_linux_amd64.tar.gz gb
+curl -fsSLO https://github.com/GreaseBook/cli/releases/latest/download/gb_0.1.4_linux_amd64.tar.gz
+tar -xzf gb_0.1.4_linux_amd64.tar.gz gb
 sudo install -m 0755 gb /usr/local/bin/gb
 gb --version
 ```
@@ -73,11 +73,11 @@ gb --version
 Every release has a `checksums.txt`. Compare it with the file you downloaded:
 
 ```bash
-shasum -a 256 gb_0.1.3_linux_amd64.tar.gz       # macOS and Linux
+shasum -a 256 gb_0.1.4_linux_amd64.tar.gz       # macOS and Linux
 ```
 
 ```powershell
-Get-FileHash .\gb_0.1.3_windows_amd64.msi -Algorithm SHA256   # Windows
+Get-FileHash .\gb_0.1.4_windows_amd64.msi -Algorithm SHA256   # Windows
 ```
 
 ## Sign in
@@ -129,6 +129,8 @@ GreaseBook site shows.
 | `production` | facility per day | oil, gas and water produced, oil sold, oil in stock |
 | `well-production` | well per day | the same production, per well |
 | `water` | facility per day | water produced, hauled, disposed, injected, transferred, from source wells, in stock |
+| `sales` | run ticket | oil sold through LACTs and oil meters: ticket number, purchaser, barrels, API gravity, BS&W |
+| `comments` | comment | comments on facilities and wells: when, where, who and what |
 
 ```bash
 gb datasets production                                                   # columns and units
@@ -138,12 +140,14 @@ gb data well-production --start 2026-09-01 --end 2026-09-30 --facility 412 --for
 gb data water --start 2026-09-01 --end 2026-09-30 --facility 412 --facility 413
 ```
 
-- `production`, `well-production` and `water` need `--start` and `--end` (yyyy-mm-dd), **at most 92 days** per
-  request, and allow **one request per minute** each. Leave out `--facility` to get every facility you can see in that
+- `production`, `well-production`, `water` and `sales` need `--start` and `--end` (yyyy-mm-dd), **at most 92 days**
+  per request, and allow **one request per minute** each. Leave out `--facility` to get every facility you can see in that
   one request; `well-production` reads at most 20 facilities per request, so pick them with `--facility`.
 - Past days can still change: the field corrects readings and enters late data, so refresh the period you report on.
 - A collection point's rows already include the facilities assigned to it; filter on `facilityType` so you do not
   count them twice.
+- `comments` also needs `--start` and `--end`, returns 1000 per page (`--page 2` for the next) and takes at most
+  one `--facility`.
 - Need a longer period? Ask for it in 92-day pieces, one per minute.
 
 ## Output formats
@@ -194,7 +198,23 @@ prints `too many requests (429)`; wait a few seconds and try again.
   everywhere at once.
 - `gb` only talks to GreaseBook over HTTPS and never follows redirects, so your token goes nowhere else.
 
+## Shell completion
+
+Installed with Homebrew, completion already works: press <kbd>Tab</kbd> after `gb` for commands, and after `gb data`
+for dataset names. Elsewhere, add it to your shell:
+
+```bash
+gb completion bash > ~/.gb-completion.bash && echo 'source ~/.gb-completion.bash' >> ~/.bashrc
+```
+
+```powershell
+gb completion powershell >> $PROFILE
+```
+
 ## Update and uninstall
+
+`gb` checks for a newer version at most once a day and tells you how to update. Set `GB_NO_UPDATE_CHECK=1` to turn
+that off.
 
 | | Update | Uninstall |
 |---|---|---|

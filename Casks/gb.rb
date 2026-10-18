@@ -1,16 +1,19 @@
 cask "gb" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.1.3"
-  sha256 arm:   "d7a08fedddac962aa26058dd47f27ff43d41cbb24fa3acf659315aa5ed06b012",
-         intel: "2e8b91004737e36759a74b7f5ef29f1c0097655f804635defe14a697b0782da4"
+  version "0.1.4"
+  sha256 arm:   "2428e6575370d9ed2cf0a9772ee5ecc418f59ff01e964747c3cde1a2dc243d95",
+         intel: "92a234f59afb1ba209aa7f3c30281cee67b278f14f2a86a1a2c1dd75fec4a004"
 
   url "https://github.com/GreaseBook/cli/releases/download/v#{version}/gb_#{version}_darwin_#{arch}.tar.gz"
   name "GreaseBook CLI"
   desc "Read your GreaseBook data from the terminal"
-  homepage "https://github.com/GreaseBook/cli"
+  homepage "https://cli.greasebook.com"
 
   binary "gb"
+  bash_completion "completions/gb.bash"
+  zsh_completion "completions/_gb"
+  fish_completion "completions/gb.fish"
 
   # Temporary until the binary is signed and notarized: without it Gatekeeper blocks the first run. Remove it then.
   postflight do
