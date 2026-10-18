@@ -17,7 +17,7 @@ brew install --cask gb
 Installed `gb` 0.1.0 as a formula? Switch with `brew uninstall gb && brew update && brew install --cask gb`.
 Homebrew on Linux is not supported; use the `.tar.gz` from the release.
 
-**Windows:** download `gb_0.1.1_windows_amd64.msi` from the
+**Windows:** download `gb_0.1.2_windows_amd64.msi` from the
 [latest release](https://github.com/GreaseBook/cli/releases/latest) and run it.
 
 **Linux and manual installs:** every release has archives for macOS, Linux and Windows, plus `checksums.txt`.
@@ -28,9 +28,9 @@ Homebrew on Linux is not supported; use the `.tar.gz` from the release.
 gb login
 ```
 
-`gb login` asks for your GreaseBook session token. It uses it once to open a separate, read-only CLI
-session and does not keep it. The CLI session ends after 30 days without use, on `gb logout`, or when your
-password changes.
+In GreaseBook, open your name menu (top right), choose **CLI token**, copy it and paste it into `gb login`.
+The token is read-only and does not expire. It ends when you press **Renew** on that screen, on `gb logout`, or
+when your password changes. Your company must have the CLI turned on; ask GreaseBook support.
 
 ## Use
 
@@ -40,4 +40,4 @@ gb facilities --active --format csv
 gb logout
 ```
 
-Output is JSON by default, or CSV with `--format csv`. Run `gb --help` for every command.
+Output is a table by default; use `--format json` for scripts and AI assistants, or `--format csv`. Run `gb --help` for every command.
