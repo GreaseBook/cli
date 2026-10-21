@@ -11,7 +11,7 @@ permissions you have on the GreaseBook site. Build your own reports and dashboar
 - **Your permissions, nothing more.** Execs see their whole company, pumpers see the facilities assigned to them.
 - **Made for scripts and AI.** Every command prints a table, JSON or CSV.
 
-Latest version: **0.1.8** · [cli.greasebook.com](https://cli.greasebook.com) · [All releases](https://github.com/GreaseBook/cli/releases)
+Latest version: **0.1.9** · [cli.greasebook.com](https://cli.greasebook.com) · [All releases](https://github.com/GreaseBook/cli/releases)
 
 ## Contents
 
@@ -44,7 +44,7 @@ Installed `gb` 0.1.0 as a formula? Switch with `brew uninstall gb && brew update
 
 ### Windows
 
-1. Download **`gb_0.1.8_windows_amd64.msi`** from the [latest release](https://github.com/GreaseBook/cli/releases/latest).
+1. Download **`gb_0.1.9_windows_amd64.msi`** from the [latest release](https://github.com/GreaseBook/cli/releases/latest).
 2. Double-click it. If Windows SmartScreen says it protected your PC, choose **More info**, then **Run anyway**.
 3. Follow the installer. It installs to `C:\Program Files\GreaseBook CLI` and adds that folder to your `PATH`.
 4. Open a **new** PowerShell, Windows Terminal or Command Prompt window (windows that were already open do not see the
@@ -54,7 +54,7 @@ Installed `gb` 0.1.0 as a formula? Switch with `brew uninstall gb && brew update
 gb --version
 ```
 
-**Windows on ARM:** download `gb_0.1.8_windows_arm64.zip`, extract `gb.exe` to a folder such as
+**Windows on ARM:** download `gb_0.1.9_windows_arm64.zip`, extract `gb.exe` to a folder such as
 `%LOCALAPPDATA%\Programs\gb`, and add that folder to your user `PATH` (**Settings > System > About > Advanced system
 settings > Environment Variables**).
 
@@ -62,8 +62,8 @@ settings > Environment Variables**).
 
 ```bash
 # x86_64; use linux_arm64 on ARM
-curl -fsSLO https://github.com/GreaseBook/cli/releases/latest/download/gb_0.1.8_linux_amd64.tar.gz
-tar -xzf gb_0.1.8_linux_amd64.tar.gz gb
+curl -fsSLO https://github.com/GreaseBook/cli/releases/latest/download/gb_0.1.9_linux_amd64.tar.gz
+tar -xzf gb_0.1.9_linux_amd64.tar.gz gb
 sudo install -m 0755 gb /usr/local/bin/gb
 gb --version
 ```
@@ -73,11 +73,11 @@ gb --version
 Every release has a `checksums.txt`. Compare it with the file you downloaded:
 
 ```bash
-shasum -a 256 gb_0.1.8_linux_amd64.tar.gz       # macOS and Linux
+shasum -a 256 gb_0.1.9_linux_amd64.tar.gz       # macOS and Linux
 ```
 
 ```powershell
-Get-FileHash .\gb_0.1.8_windows_amd64.msi -Algorithm SHA256   # Windows
+Get-FileHash .\gb_0.1.9_windows_amd64.msi -Algorithm SHA256   # Windows
 ```
 
 ## Sign in
