@@ -1,9 +1,9 @@
 cask "gb" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.2.0"
-  sha256 arm:   "dfcbfd09f8ea970f9b52d36fb03fbaf75ea24f6007afac129b7ae0e2f7bc3e31",
-         intel: "b2ac5052815ed833e76ba8cdc17b87a18030a8175f9579b5671bde958dab16a1"
+  version "0.2.1"
+  sha256 arm:   "e115cffbf0cd3ba63fcd3bf8dfbdb8ad312d4056ba2217028ba086433a5f2cca",
+         intel: "e7b8f45d0d4add8dfd4ed1250eb44695bc48e0a70c3e639eeaef0b6bd36385fd"
 
   url "https://github.com/GreaseBook/cli/releases/download/v#{version}/gb_#{version}_darwin_#{arch}.tar.gz"
   name "GreaseBook CLI"
